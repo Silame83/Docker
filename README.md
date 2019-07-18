@@ -12,6 +12,9 @@ docker run -d --name testjenkins -v jenkinshome:/var/jenkins_home jenkins/jenkin
 
 #.....something plugins......
 
+#copy file configuration bashrc by root to $HOME by Jenkins
+cp /root/.bashrc $HOME/
+
 #export jenkins variables to PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HOME.local/bin
 
