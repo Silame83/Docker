@@ -17,6 +17,7 @@ cp /root/.bashrc $HOME/
 
 #export jenkins variables to PATH
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HOME.local/bin
+source $PATH
 
 #Install sudo command (optional)
 apt-get install sudo -y
@@ -28,3 +29,7 @@ usermod -aG sudo jenkins
 visudo
 #Insert command
 jenkins ALL=(ALL) NOPASSWD: ALL
+
+
+#Additional commands
+docker exec -it -u root (ID container) bash
