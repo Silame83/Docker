@@ -33,3 +33,21 @@ jenkins ALL=(ALL) NOPASSWD: ALL
 
 #Additional commands
 docker exec -it -u root (ID container) bash
+
+#Backup and restore volumes
+______________________________________________________________________________________________________________________
+
+Backup:
+
+docker run --rm --volumes-from testjenkins -v $(echo jhbkp-$(date +"%H-%M-%S_%d-%m-%y")):/var/jenkins_home_bkp ubuntu cvf /backup/backup.tar /var/jenkins_home
+
+
+______________________________________________________________________________________________________________________
+
+Restore:
+
+docker run -v /var/jenkins_home --name restoretemp ubuntu /bin/bash
+
+1. docker run -d --name testjenkins-1 -p 8081:8080 --mount src=<BKPVOL>,target=/backup jenkins/jenkins:2.176.2-jdk11
+
+2. docker exec -it -u root testjenkins-1 bash -c "tar xvf /backup/backup.tar"
